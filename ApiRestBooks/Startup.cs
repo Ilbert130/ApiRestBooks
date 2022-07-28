@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using ApiRestBooks.Configurations;
+using System.Text.Json.Serialization;
 
 namespace ApiRestBooks
 {
@@ -14,6 +15,7 @@ namespace ApiRestBooks
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddAutoMapper(typeof(Startup));
