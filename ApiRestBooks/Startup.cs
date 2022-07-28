@@ -19,6 +19,13 @@ namespace ApiRestBooks
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddAutoMapper(typeof(Startup));
+            services.AddCors(opciones =>
+            {
+                opciones.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin();
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -36,6 +43,7 @@ namespace ApiRestBooks
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 
